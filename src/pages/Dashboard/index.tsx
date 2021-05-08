@@ -1,13 +1,24 @@
-import React from 'react';
-import { FiPower } from 'react-icons/fi';
-import { Container, Header, HeaderContent, Profile } from './styles';
+import React, { useState } from 'react';
+import { FiClock, FiPower } from 'react-icons/fi';
+import {
+  Container,
+  Header,
+  HeaderContent,
+  Profile,
+  Content,
+  Schedule,
+  Calendar,
+  NextAppointment,
+  Section,
+  Appointment,
+} from './styles';
 import logoImg from '../../assets/logo.svg';
 import { useAuth } from '../../hooks/auth';
 
 const Dashboard: React.FC = () => {
-  const { signOut, user } = useAuth();
+  const [selectedDate, setSelectedDate] = useState(new Date());
 
-  console.log(user);
+  const { signOut, user } = useAuth();
 
   return (
     <Container>
@@ -27,6 +38,80 @@ const Dashboard: React.FC = () => {
           </button>
         </HeaderContent>
       </Header>
+      <Content>
+        <Schedule>
+          <h1>Horários Agendados</h1>
+          <p>
+            <span>Hoje</span>
+            <span>Dia 06</span>
+            <span>Segunda-feira</span>
+          </p>
+
+          <NextAppointment>
+            <strong>Atendimento a seguir</strong>
+            <div>
+              <img
+                src="https://avatars.githubusercontent.com/u/53798926?v=4"
+                alt="Angel Fernandes"
+              />
+              <strong>Angel Fernandes</strong>
+              <span>
+                <FiClock />
+                08:00
+              </span>
+            </div>
+          </NextAppointment>
+          <Section>
+            <strong>Manhã</strong>
+            <Appointment>
+              <span>
+                <FiClock />
+                08:00
+              </span>
+
+              <div>
+                <img
+                  src="https://avatars.githubusercontent.com/u/53798926?v=4"
+                  alt="Angel Fernandes"
+                />
+                <strong>Angel Fernandes</strong>
+              </div>
+            </Appointment>
+            <Appointment>
+              <span>
+                <FiClock />
+                08:00
+              </span>
+
+              <div>
+                <img
+                  src="https://avatars.githubusercontent.com/u/53798926?v=4"
+                  alt="Angel Fernandes"
+                />
+                <strong>Angel Fernandes</strong>
+              </div>
+            </Appointment>
+          </Section>
+          <Section>
+            <strong>Tarde</strong>
+            <Appointment>
+              <span>
+                <FiClock />
+                08:00
+              </span>
+
+              <div>
+                <img
+                  src="https://avatars.githubusercontent.com/u/53798926?v=4"
+                  alt="Angel Fernandes"
+                />
+                <strong>Angel Fernandes</strong>
+              </div>
+            </Appointment>
+          </Section>
+        </Schedule>
+        <Calendar />
+      </Content>
     </Container>
   );
 };
